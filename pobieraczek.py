@@ -52,7 +52,7 @@ def unzipFiles(sourceDirectory, destinationDirectory):
       print ("Successfully created the directory %s " % destinationDirectory)
   zipFileList = getZipFileList(sourceDirectory)
   for file in zipFileList:
-    print(zipFileList)
+    #print(zipFileList)
     with zipfile.ZipFile(file, 'r') as zip_ref:
       print("Extracting file: %s" % file)
       zip_ref.extractall(destinationDirectory)
