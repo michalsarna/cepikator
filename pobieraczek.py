@@ -24,7 +24,7 @@ def getZipFromCEPIK(fileName, fileURL, path):
       print ("Creation of the directory %s failed" % path)
     else:
       print ("Successfully created the directory %s " % path)
-  print("\nDownloading from url: " + fileURL + "\n")
+  #print("\nDownloading from url: " + fileURL + "\n")
   with requests.get(fileURL, stream=True, verify=False) as r:
     total_size = int(r.headers.get("content-length", 0))
     t=tqdm(total=total_size, unit="iB", unit_scale=True, desc=fileName)
