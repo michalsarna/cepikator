@@ -131,4 +131,4 @@ dmypy.json
 #cepikato specyfic directories and test files
 source_csv/
 download/
-test.json
+test.*.json
