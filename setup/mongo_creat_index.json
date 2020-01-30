@@ -1,0 +1,207 @@
+db.pojazdy.createIndex({
+  marka: 1
+});
+db.pojazdy.createIndex({
+  kategoria: 1
+});
+db.pojazdy.createIndex({
+  typ: 1
+});
+db.pojazdy.createIndex({
+  model: 1
+});
+db.pojazdy.createIndex({
+  wariant: 1
+});
+db.pojazdy.createIndex({
+  wersja: 1
+});
+db.pojazdy.createIndex({
+  rodzaj: 1
+});
+db.pojazdy.createIndex({
+  podrodzaj: 1
+});
+db.pojazdy.createIndex({
+  przeznaczenie: 1
+});
+db.pojazdy.createIndex({
+  pochodzenie: 1
+});
+db.pojazdy.createIndex({
+  rok_produkcji: 1
+});
+db.pojazdy.createIndex({
+  sposob_produkcji: 1
+});
+db.pojazdy.createIndex({
+  data_pierwszej_rej: 1
+});
+db.pojazdy.createIndex({
+  data_rejestracji_ost: 1
+});
+db.pojazdy.createIndex({
+  data_pierwszej_rej_za_granica: 1
+});
+db.pojazdy.createIndex({
+  pojemnosc_silnika: 1
+});
+db.pojazdy.createIndex({
+  moc_do_masy: 1
+});
+db.pojazdy.createIndex({
+  moc_silnika: 1
+});
+db.pojazdy.createIndex({
+  moc_silnika_hybrydowego: 1
+});
+db.pojazdy.createIndex({
+  masa_wlasna: 1
+});
+db.pojazdy.createIndex({
+  masa_pgj: 1
+});
+db.pojazdy.createIndex({
+  dopuszczalna_masa_calkowita: 1
+});
+db.pojazdy.createIndex({
+  maksymalna_masa_calkowita: 1
+});
+db.pojazdy.createIndex({
+  dopuszczalna_ladownosc_calk: 1
+});
+db.pojazdy.createIndex({
+  maksymalna_ladownosc_calk: 1
+});
+db.pojazdy.createIndex({
+  dopuszczalna_masa_ciag_zesp: 1
+});
+db.pojazdy.createIndex({
+  liczba_osi: 1
+});
+db.pojazdy.createIndex({
+  naj_dopuszczalny_nacisk_osi: 1
+});
+db.pojazdy.createIndex({
+  naj_maksymalny_nacisk_osi: 1
+});
+db.pojazdy.createIndex({
+  max_masa_przyczepy_z_hamulcem: 1
+});
+db.pojazdy.createIndex({
+  max_masa_przyczepy_bez_ham: 1
+});
+db.pojazdy.createIndex({
+  liczba_miejsc_ogolem: 1
+});
+db.pojazdy.createIndex({
+  liczba_miejsc_siedzacych: 1
+});
+db.pojazdy.createIndex({
+  liczba_miejsc_stojacych: 1
+});
+db.pojazdy.createIndex({
+  rodzaj_paliwa: 1
+});
+db.pojazdy.createIndex({
+  rodzaj_paliwa_alternatywnego: 1
+});
+db.pojazdy.createIndex({
+  rodzaj_paliwa_alternatywnego2: 1
+});
+db.pojazdy.createIndex({
+  sr_zuzycie_pal: 1
+});
+db.pojazdy.createIndex({
+  rodzaj_zawieszenia: 1
+});
+db.pojazdy.createIndex({
+  radar: 1
+});
+db.pojazdy.createIndex({
+  hak: 1
+});
+db.pojazdy.createIndex({
+  kierownica_polozenie: 1
+});
+db.pojazdy.createIndex({
+  kierownica_z_prawej: 1
+});
+db.pojazdy.createIndex({
+  katalizator: 1
+});
+db.pojazdy.createIndex({
+  producent_podstawowy: 1
+});
+db.pojazdy.createIndex({
+  kod_ident: 1
+});
+db.pojazdy.createIndex({
+  rozstaw_osi_kierowanej: 1
+});
+db.pojazdy.createIndex({
+  rozstaw_kol_max: 1
+});
+db.pojazdy.createIndex({
+  rozstaw_kol_sred: 1
+});
+db.pojazdy.createIndex({
+  rozstaw_kol_min: 1
+});
+db.pojazdy.createIndex({
+  emisja_co2_redukcja: 1
+});
+db.pojazdy.createIndex({
+  wersja_rpp: 1
+});
+db.pojazdy.createIndex({
+  kod_rpp: 1
+});
+db.pojazdy.createIndex({
+  data_wyrejestrowania: 1
+});
+db.pojazdy.createIndex({
+  przyczyna_wyrejestrowania: 1
+});
+db.pojazdy.createIndex({
+  data_wprowadzenia_danych: 1
+});
+db.pojazdy.createIndex({
+  akt_miejsce_rej_wojwe: 1
+});
+db.pojazdy.createIndex({
+  akt_miejsce_rej_powiat: 1
+});
+db.pojazdy.createIndex({
+  akt_miejsce_rej_gmina: 1
+});
+db.pojazdy.createIndex({
+  siedziba_wlasciciela_woj: 1
+});
+db.pojazdy.createIndex({
+  siedziba_wlasciciela_pow: 1
+});
+db.pojazdy.createIndex({
+  siedziba_wlasciciela_gmina: 1
+});
+db.pojazdy.createIndex({
+  data_pierwszej_rej_w_kraju: 1
+});
+db.pojazdy.createIndex({
+  createtimestamp: 1
+});
+db.pojazdy.createIndex({
+  modifytimestamp: 1
+});
+db.pojazdy.createIndex({
+  siedziba_wlasciciela_woj_teryt: 1
+});
+db.pojazdy.createIndex({
+  akt_miejsce_rej_wojew_teryt: 1
+});
+db.pojazdy.createIndex({
+  emisja_co2: 1
+});
+db.pojazdy.createIndex({
+  emisja_co2_pal_alternatywne: 1
+});
