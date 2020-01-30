@@ -20,15 +20,15 @@ def main(args):
       fileList.append(os.path.join(args.directory, file))
   if (args.useMysql == False):
     print("Using Mongo")
-    readForMongo(args, fileList)
+    insertIntoMongo(args, fileList)
   else:
     args.dbPort = 3306
     args.dbUser = "cepikator"
     args.dbPass = "<c3p1katOr>"
     print("Using Mysql")
-    readForMysql(args, fileList)
+    insertIntoMySql(args, fileList)
 
-def readForMongo(args, fileList):
+def insertIntoMongo(args, fileList):
   if (args.dbPass != "" and args.dbUser != ""):
     dbUrl = "mongodb://"+str(args.dbUrl)+":"+str(args.dbPass)+"@"+str(args.dbHost)+":"+str(args.dbPort)+"/cepikator"
   else:
@@ -42,7 +42,7 @@ def readForMongo(args, fileList):
       for row in tqdm(csvfile, total=fileLineCount ,desc=cfile, unit='Lines',unit_scale=True):
         db.pojazdy.insert_one(row)
       
-def readForMysql(args, fileList):
+def insertIntoMySql(args, fileList):
   config = {
     'user': args.dbUser,
     'password': args.dbPass,
