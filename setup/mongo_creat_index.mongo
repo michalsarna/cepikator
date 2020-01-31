@@ -98,15 +98,6 @@ db.pojazdy.createIndex({
   max_masa_przyczepy_bez_ham: 1
 });
 db.pojazdy.createIndex({
-  liczba_miejsc_ogolem: 1
-});
-db.pojazdy.createIndex({
-  liczba_miejsc_siedzacych: 1
-});
-db.pojazdy.createIndex({
-  liczba_miejsc_stojacych: 1
-});
-db.pojazdy.createIndex({
   rodzaj_paliwa: 1
 });
 db.pojazdy.createIndex({
@@ -114,9 +105,6 @@ db.pojazdy.createIndex({
 });
 db.pojazdy.createIndex({
   rodzaj_paliwa_alternatywnego2: 1
-});
-db.pojazdy.createIndex({
-  sr_zuzycie_pal: 1
 });
 db.pojazdy.createIndex({
   rodzaj_zawieszenia: 1
@@ -194,20 +182,8 @@ db.pojazdy.createIndex({
   data_pierwszej_rej_w_kraju: 1
 });
 db.pojazdy.createIndex({
-  createtimestamp: 1
-});
-db.pojazdy.createIndex({
-  modifytimestamp: 1
-});
-db.pojazdy.createIndex({
   siedziba_wlasciciela_woj_teryt: 1
 });
 db.pojazdy.createIndex({
   akt_miejsce_rej_wojew_teryt: 1
-});
-db.pojazdy.createIndex({
-  emisja_co2: 1
-});
-db.pojazdy.createIndex({
-  emisja_co2_pal_alternatywne: 1
 });

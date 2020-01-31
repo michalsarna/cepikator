@@ -4,14 +4,25 @@ import argparse
 import os
 import csv
 import json
-from pymongo import MongoClient
+import pymongo
 from tqdm import tqdm
 from tqdm.utils import CallbackIOWrapper
 import mysql.connector
+import logging
+import datetime
 
 
 def main(args):
   #print("args: ", args)
+  if (args.logfile == None):
+    defaultLogsDirectory = "./logs"
+    defaultFullName = defaultLogsDirectory+"/csvToDB-"+str(datetime.date.today())+".log"
+    if (not os.path.exists(defaultLogsDirectory)):
+      os.mkdir(defaultLogsDirectory)
+    args.logfile = defaultFullName
+  logging.basicConfig(filename=args.logfile,level=logging.INFO)
+  logging.info("start: "+str(datetime.datetime.now()))
+  logging.info("ARGS: "+str(args))
   fileList = []
   if (args.file != None):
     fileList.append(args.file)
@@ -19,29 +30,34 @@ def main(args):
     for file in os.listdir(args.directory):
       fileList.append(os.path.join(args.directory, file))
   if (args.useMysql == False):
-    print("Using Mongo")
+    logging.info("Using Mongo")
     insertIntoMongo(args, fileList)
   else:
     args.dbPort = 3306
     args.dbUser = "cepikator"
     args.dbPass = "<c3p1katOr>"
-    print("Using Mysql")
+    logging.info("Using Mysql")
     insertIntoMySql(args, fileList)
+  logging.info("stop: "+str(datetime.datetime.now()))
 
 def insertIntoMongo(args, fileList):
   if (args.dbPass != "" and args.dbUser != ""):
     dbUrl = "mongodb://"+str(args.dbUrl)+":"+str(args.dbPass)+"@"+str(args.dbHost)+":"+str(args.dbPort)+"/cepikator"
   else:
     dbUrl = "mongodb://"+str(args.dbHost)+":"+str(args.dbPort)+"/cepikator"
-  client = MongoClient(dbUrl)
+  client = pymongo.MongoClient(dbUrl)
   db = client.cepikator
   for cfile in tqdm(fileList, desc="Files processed", unit_scale=False, unit=""):
     fileLineCount = sum(1 for line in open(cfile))
     with open(cfile, newline='') as csvfile:
       csvfile = csv.DictReader(csvfile, delimiter=',')
       for row in tqdm(csvfile, total=fileLineCount ,desc=cfile, unit='Lines',unit_scale=True):
-        db.pojazdy.insert_one(row)
-      
+        try:
+          db.pojazdy.insert_one(row)
+        except pymongo.errors.DuplicateKeyError as e:
+          logging.info("skipped pojazd_id: %s", row.get('pojazd_id'))
+          pass
+
 def insertIntoMySql(args, fileList):
   config = {
     'user': args.dbUser,
@@ -72,7 +88,7 @@ def insertIntoMySql(args, fileList):
           try:
             cursor.execute(add_pojazdy, new_row)
           except mysql.connector.Error as err:
-            print("Something went wrong: {}".format(err))
+            logging.info("Something went wrong: {}".format(err))
           cnx.commit()
   cursor.close()
   cnx.close()
@@ -89,5 +105,6 @@ if __name__ == "__main__":
   parser.add_argument("--db-port", action="store", default="27017", dest="dbPort", help="Database port to use. (default: 27017 for mongo and 3306 for MySQL/MariaDB)")
   parser.add_argument("--db-user", action="store", default="", dest="dbUser", help="Database user to use. (default: \"\")")
   parser.add_argument("--db-pass", action="store", default="", dest="dbPass", help="Database users password to use. (default: \"\")")
+  parser.add_argument("-lf", "--logfile", help="Allows to use different logfile to use", action="store", default=None)
   args = parser.parse_args()
   main(args)
