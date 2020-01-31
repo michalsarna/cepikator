@@ -132,3 +132,6 @@ dmypy.json
 source_csv/
 download/
 test.*.json
+
+#for VSCode
+.vscode/
