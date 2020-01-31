@@ -1,6 +1,9 @@
 db.pojazdy.createIndex({
   pojazd_id: 1
 }, { unique: true });
+db.pojazdy.ensureIndex({
+  'pojazd_id': 1
+}, { unique: true });
 db.pojazdy.createIndex({
   marka: 1
 });
