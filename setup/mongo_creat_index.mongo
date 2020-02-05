@@ -38,9 +38,6 @@ db.pojazdy.createIndex({
   rok_produkcji: 1
 });
 db.pojazdy.createIndex({
-  sposob_produkcji: 1
-});
-db.pojazdy.createIndex({
   data_pierwszej_rej: 1
 });
 db.pojazdy.createIndex({
@@ -63,21 +60,6 @@ db.pojazdy.createIndex({
 });
 db.pojazdy.createIndex({
   masa_pgj: 1
-});
-db.pojazdy.createIndex({
-  dopuszczalna_masa_calkowita: 1
-});
-db.pojazdy.createIndex({
-  maksymalna_masa_calkowita: 1
-});
-db.pojazdy.createIndex({
-  dopuszczalna_ladownosc_calk: 1
-});
-db.pojazdy.createIndex({
-  maksymalna_ladownosc_calk: 1
-});
-db.pojazdy.createIndex({
-  dopuszczalna_masa_ciag_zesp: 1
 });
 db.pojazdy.createIndex({
   liczba_osi: 1
@@ -113,9 +95,6 @@ db.pojazdy.createIndex({
   hak: 1
 });
 db.pojazdy.createIndex({
-  kierownica_polozenie: 1
-});
-db.pojazdy.createIndex({
   kierownica_z_prawej: 1
 });
 db.pojazdy.createIndex({
@@ -128,21 +107,6 @@ db.pojazdy.createIndex({
   kod_ident: 1
 });
 db.pojazdy.createIndex({
-  rozstaw_osi_kierowanej: 1
-});
-db.pojazdy.createIndex({
-  rozstaw_kol_max: 1
-});
-db.pojazdy.createIndex({
-  rozstaw_kol_sred: 1
-});
-db.pojazdy.createIndex({
-  rozstaw_kol_min: 1
-});
-db.pojazdy.createIndex({
-  emisja_co2_redukcja: 1
-});
-db.pojazdy.createIndex({
   wersja_rpp: 1
 });
 db.pojazdy.createIndex({
@@ -150,12 +114,6 @@ db.pojazdy.createIndex({
 });
 db.pojazdy.createIndex({
   data_wyrejestrowania: 1
-});
-db.pojazdy.createIndex({
-  przyczyna_wyrejestrowania: 1
-});
-db.pojazdy.createIndex({
-  data_wprowadzenia_danych: 1
 });
 db.pojazdy.createIndex({
   akt_miejsce_rej_wojwe: 1
