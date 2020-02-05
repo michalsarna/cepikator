@@ -21,8 +21,8 @@ def main(args):
       os.mkdir(defaultLogsDirectory)
     args.logfile = defaultFullName
   logging.basicConfig(filename=args.logfile,level=logging.INFO)
-  logging.info("start: "+str(datetime.datetime.now()))
-  logging.info("ARGS: "+str(args))
+  logging.info("start: %s " % str(datetime.datetime.now()))
+  logging.info("ARGS: %s " % str(args))
   fileList = []
   if (args.file != None):
     fileList.append(args.file)
@@ -38,7 +38,7 @@ def main(args):
     args.dbPass = "<c3p1katOr>"
     logging.info("Using Mysql")
     insertIntoMySql(args, fileList)
-  logging.info("stop: "+str(datetime.datetime.now()))
+  logging.info("stop: %s " % str(datetime.datetime.now()))
 
 def insertIntoMongo(args, fileList):
   if (args.dbPass != "" and args.dbUser != ""):
@@ -48,6 +48,7 @@ def insertIntoMongo(args, fileList):
   client = pymongo.MongoClient(dbUrl)
   db = client.cepikator
   for cfile in tqdm(fileList, desc="Files processed", unit_scale=False, unit=""):
+    logging.info("processing file: %s" % cfile)
     fileLineCount = sum(1 for line in open(cfile))
     with open(cfile, newline='') as csvfile:
       csvfile = csv.DictReader(csvfile, delimiter=',')
@@ -55,8 +56,9 @@ def insertIntoMongo(args, fileList):
         try:
           db.pojazdy.insert_one(row)
         except pymongo.errors.DuplicateKeyError as e:
-          logging.info("skipped pojazd_id: %s", row.get('pojazd_id'))
+          logging.info("skipped pojazd_id: %s" % str(row.get('pojazd_id')))
           pass
+    logging.info("done")
 
 def insertIntoMySql(args, fileList):
   config = {
