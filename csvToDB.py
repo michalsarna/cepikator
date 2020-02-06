@@ -107,6 +107,6 @@ if __name__ == "__main__":
   parser.add_argument("--db-port", action="store", default="27017", dest="dbPort", help="Database port to use. (default: 27017 for mongo and 3306 for MySQL/MariaDB)")
   parser.add_argument("--db-user", action="store", default="", dest="dbUser", help="Database user to use. (default: \"\")")
   parser.add_argument("--db-pass", action="store", default="", dest="dbPass", help="Database users password to use. (default: \"\")")
-  parser.add_argument("-lf", "--logfile", help="Allows to use different logfile to use", action="store", default=None)
+  parser.add_argument("-lf", "--logfile", help="Allows to use different logfile.", action="store", default=None)
   args = parser.parse_args()
   main(args)

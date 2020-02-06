@@ -14,10 +14,6 @@ def getJsonFromCEPIK(url):
   response = requests.get(url, verify=False)
   return response.text.rstrip()
 
-def getJsonFromFile(filename):
-  with open(filename, "r") as read_file:
-    return read_file.read().rstrip()
-
 def createDirecotry(path):
   if ( os.path.exists(path) == False):
     try:
@@ -67,29 +63,24 @@ def main(args):
   logging.info("ARGS: %s" %str(args))
   urllib3.disable_warnings()
   url = "https://api.cepik.gov.pl/pliki"
-  downloadDirectory = "./download"
-  csvDirectory = "./source_csv"
-  if (args.testFile == None ):
-    returned = getJsonFromCEPIK(url)
-    logging.info("Getting source info from local file")
-  else:
-    returned = getJsonFromFile(args.testFile)
-    logging.info("Getting source info from CEPiK api.")
+  logging.info("Getting source info from CEPiK api.")
+  returned = getJsonFromCEPIK(url)
   loaded = json.loads(returned)
   data = loaded["data"]
   fileList = {}
   for d in data:
     fileList[str(d["id"]+"_"+d["attributes"]["data-utworzenia-pliku"]+".zip")] = d["attributes"]["url-do-pliku"]
-  getZipsFromCEPIK(fileList, downloadDirectory, args.forceDownload, args.unzip, csvDirectory)
+  getZipsFromCEPIK(fileList, args.downloadDir, args.forceDownload, args.unzip, args.csvDirectory)
   logging.info("stop: %s" % str(datetime.datetime.now()))
 
 ################################## MAIN FUNCTION ##################################
 
 if __name__ == "__main__":
   parser = argparse.ArgumentParser()
-  parser.add_argument("-t", "--test-file", action="store", dest="testFile", help="file to use insted of ")
-  parser.add_argument("--no-unzip", action="store_true", default=False, dest="unzip", help="perform unzipping")
-  parser.add_argument("--force-download", action="store_true", default=False, dest="forceDownload", help="force download and overwrite files")
-  parser.add_argument("-lf", "--logfile", help="Allows to use different logfile to use", action="store", default=None)
+  parser.add_argument("-dd", "--download-dir", action="store", default="./download", dest="downloadDir", help="Directory to download to. (default ./download)")
+  parser.add_argument("-sd", "--source-dir", action="store", default="./source_csv", dest="csvDirectory", help="Directory to unpack zip's to. (default ./csvDirectory)")
+  parser.add_argument("--no-unzip", action="store_true", default=False, dest="unzip", help="Don't perform unzipping")
+  parser.add_argument("--force-download", action="store_true", default=False, dest="forceDownload", help="Force download and overwrite files")
+  parser.add_argument("-lf", "--logfile", help="Allows to use different logfile.", action="store", default=None)
   args = parser.parse_args()
   main(args)
