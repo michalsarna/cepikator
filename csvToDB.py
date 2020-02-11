@@ -20,6 +20,10 @@ def main(args):
     if (not os.path.exists(defaultLogsDirectory)):
       os.mkdir(defaultLogsDirectory)
     args.logfile = defaultFullName
+  if (args.useMysql == True):
+    args.dbPort = 3306
+    args.dbUser = "cepikator"
+    args.dbPass = "<c3p1katOr>"
   logging.basicConfig(filename=args.logfile,level=logging.INFO)
   logging.info("start: %s " % str(datetime.datetime.now()))
   logging.info("ARGS: %s " % str(args))
@@ -33,9 +37,6 @@ def main(args):
     logging.info("Using Mongo")
     insertIntoMongo(args, fileList)
   else:
-    args.dbPort = 3306
-    args.dbUser = "cepikator"
-    args.dbPass = "<c3p1katOr>"
     logging.info("Using Mysql")
     insertIntoMySql(args, fileList)
   logging.info("stop: %s " % str(datetime.datetime.now()))
